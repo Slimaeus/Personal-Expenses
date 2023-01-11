@@ -48,7 +48,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+class _MyHomePageState extends State<MyHomePage> {
   // String titleInput;
   List<Transaction> _userTransactions = [
     Transaction(
@@ -61,16 +61,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   ];
 
   bool _showChart = false;
-
-  @override
-  void didChangeAAppLifecycleState(AppLifecycleState state) {}
-
-  @override
-  dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
